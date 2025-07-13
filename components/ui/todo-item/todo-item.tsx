@@ -10,6 +10,8 @@ type TTodoItemUI = {
   toggleCompleted: (id: string) => void;
   setIsChecked: (v: boolean) => void;
   deleteItem: (id: string) => void;
+  isHovered: boolean;
+  setIsHovered: (v: boolean) => void;
 };
 
 const TodoItemUI: FC<TTodoItemUI> = ({
@@ -19,9 +21,22 @@ const TodoItemUI: FC<TTodoItemUI> = ({
   toggleCompleted,
   setIsChecked,
   deleteItem,
+  isHovered,
+  setIsHovered,
 }) => {
+  const deleteBtnClasses = [
+    classes.deleteBtn,
+    isHovered ? classes.deleteBtnVisibility : null,
+  ]
+    .filter(Boolean)
+    .join(" ");
+
   return (
-    <div className={classes.item}>
+    <div
+      className={classes.item}
+      onMouseMove={() => setIsHovered(true)}
+      onMouseOut={() => setIsHovered(false)}
+    >
       <Checkbox.Card
         className={classes.root}
         radius="md"
@@ -45,7 +60,7 @@ const TodoItemUI: FC<TTodoItemUI> = ({
           <Text className={classes.label}>{label}</Text>
         </Group>
       </Checkbox.Card>
-      <div className={classes.deleteBtn}>
+      <div className={deleteBtnClasses}>
         <ActionIcon
           variant="subtle"
           color="red"

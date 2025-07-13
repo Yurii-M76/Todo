@@ -43,5 +43,12 @@
   position: absolute;
   top: inherit;
   right: 14px;
+  visibility: hidden;
   display: flex;
+  display: none;
+}
+
+.deleteBtnVisibility {
+  visibility: visible;
+  display: block;
 }
