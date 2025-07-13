@@ -1,11 +1,14 @@
 import { Title } from "@mantine/core";
-import { Todos } from "@/components";
+import { ThemeToggler, Todos } from "@/components";
 
 export default function HomePage() {
   return (
     <>
       <Title order={1}>ToDo</Title>
       <Todos />
+      <div className="themeToggler">
+        <ThemeToggler />
+      </div>
     </>
   );
 }
