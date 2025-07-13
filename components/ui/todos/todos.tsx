@@ -68,7 +68,7 @@ const TodosUI: FC<TTodosUI> = ({
             pl={12}
             pr={12}
           >
-            Выполненные
+            Завершенные
           </Button>
         </Button.Group>
       </Flex>
@@ -92,12 +92,12 @@ const TodosUI: FC<TTodosUI> = ({
       <div className={classes.todoFooter}>
         <span className={classes.completedCount}>
           {filterValue === "all"
-            ? `Completed:
-          ${completed} of ${active + completed}`
+            ? `Завершено:
+          ${completed} из ${active + completed}`
             : filterValue === "completed"
-            ? `Completed:
+            ? `Завершенные:
           ${completed}`
-            : `Active: 
+            : `Активные: 
           ${active}`}
         </span>
         <Button variant="light" color="red">
