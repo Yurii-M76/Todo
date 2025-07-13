@@ -2,6 +2,7 @@ import { Dispatch, FC, SetStateAction } from "react";
 import { ActionIcon, Button, Checkbox, Flex, Stack } from "@mantine/core";
 import { NewTodo } from "@/components/forms";
 import { TodoItem } from "@/components/todo-item";
+import { TodoNoDataUI } from "@/components/ui";
 import { ArrowUpDownIcon } from "../icons";
 import { TTodo, TTodoFiltered } from "@/types";
 import classes from "./styles.module.css";
@@ -31,7 +32,7 @@ const TodosUI: FC<TTodosUI> = ({
     <div className={classes.todos}>
       <NewTodo setItems={setItems} />
 
-      <Flex justify={"space-between"} mt={10}>
+      <Flex justify={"space-between"} mt={10} mb={10}>
         <ActionIcon size="lg" variant="light" color="gray" onClick={setRevers}>
           <ArrowUpDownIcon width={24} height={24} strokeWidth="2" />
         </ActionIcon>
@@ -61,17 +62,21 @@ const TodosUI: FC<TTodosUI> = ({
         </Button.Group>
       </Flex>
 
-      <Checkbox.Group>
-        <Stack pt="md" gap="xs">
-          {items.map((item) => (
-            <TodoItem
-              key={item.id}
-              todo={item}
-              toggleCompleted={toggleCompleted}
-            />
-          ))}
-        </Stack>
-      </Checkbox.Group>
+      {!items.length ? (
+        <TodoNoDataUI />
+      ) : (
+        <Checkbox.Group>
+          <Stack gap="xs">
+            {items.map((item) => (
+              <TodoItem
+                key={item.id}
+                todo={item}
+                toggleCompleted={toggleCompleted}
+              />
+            ))}
+          </Stack>
+        </Checkbox.Group>
+      )}
 
       <div className={classes.todoFooter}>
         <span className={classes.completedCount}>
