@@ -1,28 +1,19 @@
 "use client";
-import {
-  ActionIcon,
-  useComputedColorScheme,
-  useMantineColorScheme,
-} from "@mantine/core";
-import { MoonIcon, SunIcon } from "@/components/ui";
+import { ActionIcon, useMantineColorScheme } from "@mantine/core";
+import classes from "./styles.module.css";
 
 const ThemeToggler = () => {
-  const { colorScheme, setColorScheme } = useMantineColorScheme();
-  const computedColorScheme = useComputedColorScheme("light", {
-    getInitialValueInEffect: true,
-  });
+  const { toggleColorScheme } = useMantineColorScheme();
 
   return (
     <ActionIcon
-      onClick={() =>
-        setColorScheme(computedColorScheme === "light" ? "dark" : "light")
-      }
+      onClick={() => toggleColorScheme()}
       variant="light"
-      color="violet"
       size="xl"
       aria-label="Toggle color scheme"
     >
-      {colorScheme === "dark" ? <SunIcon /> : <MoonIcon />}
+      <span className={classes.light} />
+      <span className={classes.dark} />
     </ActionIcon>
   );
 };
