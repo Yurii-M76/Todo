@@ -1,3 +1,11 @@
+import { Title } from "@mantine/core";
+import { Todos } from "@/components";
+
 export default function HomePage() {
-  return <div>Home page</div>;
+  return (
+    <>
+      <Title order={1}>ToDo</Title>
+      <Todos />
+    </>
+  );
 }
