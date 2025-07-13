@@ -1,4 +1,6 @@
 body {
+  position: relative;
+  height: 100vh;
   padding: 10px;
   font-family: "Montserrat", sans-serif;
   font-weight: normal;
@@ -15,4 +17,15 @@ body {
   max-width: 1024px;
   margin: 10px auto;
   padding: 6px;
+}
+
+.themeToggler {
+  position: absolute;
+  top: 24px;
+  right: 28px;
+
+  @media (max-width: 1066px) {
+    top: 24px;
+    right: 18px;
+  }
 }
