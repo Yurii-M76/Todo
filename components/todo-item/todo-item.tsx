@@ -12,6 +12,7 @@ type TTodoItem = {
 const TodoItem: FC<TTodoItem> = ({ todo, toggleCompleted, deleteItem }) => {
   const { id, label, completed } = todo;
   const [isChecked, setIsChecked] = useState<boolean>(completed);
+  const [isHovered, setIsHovered] = useState<boolean>(false);
 
   return (
     <TodoItemUI
@@ -22,6 +23,8 @@ const TodoItem: FC<TTodoItem> = ({ todo, toggleCompleted, deleteItem }) => {
       setIsChecked={setIsChecked}
       toggleCompleted={toggleCompleted}
       deleteItem={deleteItem}
+      isHovered={isHovered}
+      setIsHovered={setIsHovered}
     />
   );
 };
