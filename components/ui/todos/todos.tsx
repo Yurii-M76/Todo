@@ -25,6 +25,7 @@ type TTodosUI = {
   setItems: Dispatch<SetStateAction<TTodo[]>>;
   toggleCompleted: (id: string) => void;
   clearCompleted: () => void;
+  deleteItem: (id: string) => void;
 };
 
 const TodosUI: FC<TTodosUI> = ({
@@ -38,6 +39,7 @@ const TodosUI: FC<TTodosUI> = ({
   setItems,
   toggleCompleted,
   clearCompleted,
+  deleteItem
 }) => {
   const length = items.length;
 
@@ -98,6 +100,7 @@ const TodosUI: FC<TTodosUI> = ({
                 key={item.id}
                 todo={item}
                 toggleCompleted={toggleCompleted}
+                deleteItem={deleteItem}
               />
             ))}
           </Stack>

@@ -6,9 +6,10 @@ import { TTodo } from "@/types";
 type TTodoItem = {
   todo: TTodo;
   toggleCompleted: (id: string) => void;
+  deleteItem: (id: string) => void;
 };
 
-const TodoItem: FC<TTodoItem> = ({ todo, toggleCompleted }) => {
+const TodoItem: FC<TTodoItem> = ({ todo, toggleCompleted, deleteItem }) => {
   const { id, label, completed } = todo;
   const [isChecked, setIsChecked] = useState<boolean>(completed);
 
@@ -20,6 +21,7 @@ const TodoItem: FC<TTodoItem> = ({ todo, toggleCompleted }) => {
       isChecked={isChecked}
       setIsChecked={setIsChecked}
       toggleCompleted={toggleCompleted}
+      deleteItem={deleteItem}
     />
   );
 };

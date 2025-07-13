@@ -40,8 +40,11 @@ const Todos = () => {
   };
 
   const clearCompleted = () => {
-    const clearCompleted = reversedItems.filter((item) => !item.completed);
-    setItems(clearCompleted);
+    setItems(items.filter((item) => !item.completed));
+  };
+
+  const deleteItem = (id: string) => {
+    setItems(items.filter((item) => item.id !== id));
   };
 
   return (
@@ -56,6 +59,7 @@ const Todos = () => {
       setItems={setItems}
       toggleCompleted={toggleCompleted}
       clearCompleted={clearCompleted}
+      deleteItem={deleteItem}
     />
   );
 };
