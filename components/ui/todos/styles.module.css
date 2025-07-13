@@ -28,8 +28,4 @@
 .completedCount {
   display: inline;
   inline-size: 180px;
-
-  @media (max-width: 390px) {
-    text-align: center;
-  }
 }
