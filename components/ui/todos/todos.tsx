@@ -32,8 +32,13 @@ const TodosUI: FC<TTodosUI> = ({
     <div className={classes.todos}>
       <NewTodo setItems={setItems} />
 
-      <Flex justify={"space-between"} mt={10} mb={10}>
-        <ActionIcon size="lg" variant="light" color="gray" onClick={setRevers}>
+      <Flex justify={"space-between"} mt={10} mb={10} gap={6}>
+        <ActionIcon
+          size="input-sm"
+          variant="light"
+          color="gray"
+          onClick={setRevers}
+        >
           <ArrowUpDownIcon width={24} height={24} strokeWidth="2" />
         </ActionIcon>
 
@@ -42,22 +47,28 @@ const TodosUI: FC<TTodosUI> = ({
             variant="light"
             color={filterValue === "all" ? "green" : "gray"}
             onClick={() => filtered("all")}
+            pl={12}
+            pr={12}
           >
-            All
+            Все
           </Button>
           <Button
             variant="light"
             color={filterValue === "active" ? "green" : "gray"}
             onClick={() => filtered("active")}
+            pl={12}
+            pr={12}
           >
-            Active
+            Активные
           </Button>
           <Button
             variant="light"
             color={filterValue === "completed" ? "green" : "gray"}
             onClick={() => filtered("completed")}
+            pl={12}
+            pr={12}
           >
-            Completed
+            Выполненные
           </Button>
         </Button.Group>
       </Flex>
