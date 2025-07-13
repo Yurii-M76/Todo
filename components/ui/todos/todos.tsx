@@ -1,5 +1,12 @@
 import { Dispatch, FC, SetStateAction } from "react";
-import { ActionIcon, Button, Checkbox, Flex, Stack } from "@mantine/core";
+import {
+  ActionIcon,
+  Button,
+  Checkbox,
+  Flex,
+  Stack,
+  Tooltip,
+} from "@mantine/core";
 import { NewTodo } from "@/components/forms";
 import { TodoItem } from "@/components/todo-item";
 import { TodoNoDataUI } from "@/components/ui";
@@ -12,10 +19,12 @@ type TTodosUI = {
   active: number;
   completed: number;
   filterValue: TTodoFiltered;
+  isRevers: boolean;
   setRevers: () => void;
   filtered: (value: TTodoFiltered) => void;
   setItems: Dispatch<SetStateAction<TTodo[]>>;
   toggleCompleted: (id: string) => void;
+  clearCompleted: () => void;
 };
 
 const TodosUI: FC<TTodosUI> = ({
@@ -23,24 +32,30 @@ const TodosUI: FC<TTodosUI> = ({
   active,
   completed,
   filterValue,
+  isRevers,
   setRevers,
   filtered,
   setItems,
   toggleCompleted,
+  clearCompleted,
 }) => {
+  const length = items.length;
+
   return (
     <div className={classes.todos}>
       <NewTodo setItems={setItems} />
 
       <Flex justify={"space-between"} mt={10} mb={10} gap={6}>
-        <ActionIcon
-          size="input-sm"
-          variant="light"
-          color="gray"
-          onClick={setRevers}
-        >
-          <ArrowUpDownIcon width={24} height={24} strokeWidth="2" />
-        </ActionIcon>
+        <Tooltip label={isRevers ? "Новые вверху" : "Новые внизу"}>
+          <ActionIcon
+            size="input-sm"
+            variant="light"
+            color={isRevers ? "gray" : "yellow"}
+            onClick={setRevers}
+          >
+            <ArrowUpDownIcon width={24} height={24} strokeWidth="2" />
+          </ActionIcon>
+        </Tooltip>
 
         <Button.Group>
           <Button
@@ -73,7 +88,7 @@ const TodosUI: FC<TTodosUI> = ({
         </Button.Group>
       </Flex>
 
-      {!items.length ? (
+      {!length ? (
         <TodoNoDataUI />
       ) : (
         <Checkbox.Group>
@@ -90,9 +105,11 @@ const TodosUI: FC<TTodosUI> = ({
       )}
 
       <div className={classes.todoFooter}>
-        <span className={classes.completedCount}>
+        <span className={classes.count}>
           {filterValue === "all"
-            ? `Завершено:
+            ? !length
+              ? null
+              : `Завершено:
           ${completed} из ${active + completed}`
             : filterValue === "completed"
             ? `Завершенные:
@@ -100,9 +117,16 @@ const TodosUI: FC<TTodosUI> = ({
             : `Активные: 
           ${active}`}
         </span>
-        <Button variant="light" color="red">
-          Clear completed
-        </Button>
+        {filterValue === "completed" && (
+          <Button
+            variant="light"
+            color="red"
+            onClick={clearCompleted}
+            disabled={!length}
+          >
+            Очистить
+          </Button>
+        )}
       </div>
     </div>
   );
