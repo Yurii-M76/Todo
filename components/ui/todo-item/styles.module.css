@@ -12,10 +12,6 @@
       background-color: var(--mantine-color-dark-6);
     }
   }
-
-  &[data-checked] {
-    border-color: var(--mantine-primary-color-filled);
-  }
 }
 
 .item {
