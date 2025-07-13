@@ -37,19 +37,23 @@ const TodosUI: FC<TTodosUI> = ({
         </ActionIcon>
 
         <Button.Group>
-          <Button variant="light" color="gray" onClick={() => filtered("all")}>
+          <Button
+            variant="light"
+            color={filterValue === "all" ? "green" : "gray"}
+            onClick={() => filtered("all")}
+          >
             All
           </Button>
           <Button
             variant="light"
-            color="gray"
+            color={filterValue === "active" ? "green" : "gray"}
             onClick={() => filtered("active")}
           >
             Active
           </Button>
           <Button
             variant="light"
-            color="gray"
+            color={filterValue === "completed" ? "green" : "gray"}
             onClick={() => filtered("completed")}
           >
             Completed
