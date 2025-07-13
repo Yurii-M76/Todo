@@ -1,0 +1,35 @@
+.todos {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  inline-size: 100%;
+}
+
+.todoList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.todoFooter {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  margin: 20px 0 0;
+
+  @media (max-width: 390px) {
+    justify-content: center;
+  }
+}
+
+.completedCount {
+  display: inline;
+  inline-size: 180px;
+
+  @media (max-width: 390px) {
+    text-align: center;
+  }
+}

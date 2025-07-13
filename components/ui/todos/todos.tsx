@@ -1,0 +1,91 @@
+import { Dispatch, FC, SetStateAction } from "react";
+import { ActionIcon, Button, Checkbox, Flex, Stack } from "@mantine/core";
+import { NewTodo } from "@/components/forms";
+import { TodoItemUI } from "../todo-item";
+import { ArrowUpDownIcon } from "../icons";
+import { TTodo, TTodoFiltered } from "@/types";
+import classes from "./styles.module.css";
+
+type TTodosUI = {
+  items: TTodo[];
+  active: number;
+  completed: number;
+  filterValue: TTodoFiltered;
+  setRevers: () => void;
+  filtered: (value: TTodoFiltered) => void;
+  setItems: Dispatch<SetStateAction<TTodo[]>>;
+  toggleCompleted: (id: string) => void;
+};
+
+const TodosUI: FC<TTodosUI> = ({
+  items,
+  active,
+  completed,
+  filterValue,
+  setRevers,
+  filtered,
+  setItems,
+  toggleCompleted,
+}) => {
+  return (
+    <div className={classes.todos}>
+      <NewTodo setItems={setItems} />
+
+      <Flex justify={"space-between"} mt={10}>
+        <ActionIcon size="lg" variant="light" color="gray" onClick={setRevers}>
+          <ArrowUpDownIcon width={24} height={24} strokeWidth="2" />
+        </ActionIcon>
+
+        <Button.Group>
+          <Button variant="light" color="gray" onClick={() => filtered("all")}>
+            All
+          </Button>
+          <Button
+            variant="light"
+            color="gray"
+            onClick={() => filtered("active")}
+          >
+            Active
+          </Button>
+          <Button
+            variant="light"
+            color="gray"
+            onClick={() => filtered("completed")}
+          >
+            Completed
+          </Button>
+        </Button.Group>
+      </Flex>
+
+      <Checkbox.Group>
+        <Stack pt="md" gap="xs">
+          {items.map((item) => (
+            <TodoItemUI
+              key={item.id}
+              todo={item}
+              toggleCompleted={toggleCompleted}
+            />
+          ))}
+        </Stack>
+      </Checkbox.Group>
+
+      <div className={classes.todoFooter}>
+        <span className={classes.completedCount}>
+          {filterValue === "all"
+            ? `Completed:
+          ${completed} of ${active + completed}`
+            : filterValue === "completed"
+            ? `Completed:
+          ${completed}`
+            : `Active: 
+          ${active}`}
+        </span>
+        <Button variant="light" color="red">
+          Clear completed
+        </Button>
+      </div>
+    </div>
+  );
+};
+
+export default TodosUI;
