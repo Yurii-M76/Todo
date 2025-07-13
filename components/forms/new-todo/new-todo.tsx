@@ -1,5 +1,5 @@
+"use client";
 import { Dispatch, SetStateAction } from "react";
-import { useMantineColorScheme } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { NewTodoUI } from "@/components/ui/forms";
 import { uuidv4 } from "@/utils";
@@ -10,8 +10,6 @@ const NewTodo = ({
 }: {
   setItems: Dispatch<SetStateAction<TTodo[]>>;
 }) => {
-  const { colorScheme } = useMantineColorScheme();
-
   const form = useForm({
     mode: "uncontrolled",
     initialValues: {
@@ -30,13 +28,7 @@ const NewTodo = ({
     form.reset();
   };
 
-  return (
-    <NewTodoUI
-      form={form}
-      isLightTheme={colorScheme === "light" ? true : false}
-      submitHandler={submitHandler}
-    />
-  );
+  return <NewTodoUI form={form} submitHandler={submitHandler} />;
 };
 
 export default NewTodo;

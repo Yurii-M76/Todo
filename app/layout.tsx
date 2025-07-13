@@ -1,10 +1,6 @@
 import React from "react";
 import { Montserrat } from "next/font/google";
-import {
-  MantineProvider,
-  ColorSchemeScript,
-  mantineHtmlProps,
-} from "@mantine/core";
+import { MantineProvider, mantineHtmlProps } from "@mantine/core";
 import "@mantine/core/styles.css";
 import "@/styles/global.css";
 import { theme } from "../theme";
@@ -24,7 +20,6 @@ export default function RootLayout({ children }: { children: any }) {
   return (
     <html lang="ru" {...mantineHtmlProps}>
       <head>
-        <ColorSchemeScript />
         <link rel="shortcut icon" href="/favicon.svg" />
         <meta
           name="viewport"
@@ -32,7 +27,7 @@ export default function RootLayout({ children }: { children: any }) {
         />
       </head>
       <body className={montserratFont.variable}>
-        <MantineProvider theme={theme} defaultColorScheme="light">
+        <MantineProvider theme={theme}>
           <div className={"container"}>{children}</div>
         </MantineProvider>
       </body>

@@ -1,6 +1,5 @@
 "use client";
 import { useState } from "react";
-import { useMantineColorScheme } from "@mantine/core";
 import { TodosUI } from "../ui";
 import { todos } from "@/mocks/todos";
 import { TTodo, TTodoFiltered } from "@/types";
@@ -9,8 +8,6 @@ const Todos = () => {
   const [items, setItems] = useState<TTodo[]>(todos);
   const [filterValue, setFilterValue] = useState<TTodoFiltered>("all");
   const [isRevers, setIsRevers] = useState<boolean>(true);
-
-  const { colorScheme } = useMantineColorScheme();
 
   const reversedItems = isRevers ? [...items].reverse() : items;
   const completedCount: number = items.filter((item) => item.completed).length;
@@ -63,7 +60,6 @@ const Todos = () => {
       toggleCompleted={toggleCompleted}
       clearCompleted={clearCompleted}
       deleteItem={deleteItem}
-      isLightTheme={colorScheme === "light" ? true : false}
     />
   );
 };

@@ -20,7 +20,6 @@ type TTodosUI = {
   completed: number;
   filterValue: TTodoFiltered;
   isRevers: boolean;
-  isLightTheme: boolean;
   setRevers: () => void;
   filtered: (value: TTodoFiltered) => void;
   setItems: Dispatch<SetStateAction<TTodo[]>>;
@@ -35,7 +34,6 @@ const TodosUI: FC<TTodosUI> = ({
   completed,
   filterValue,
   isRevers,
-  isLightTheme,
   setRevers,
   filtered,
   setItems,
@@ -53,7 +51,7 @@ const TodosUI: FC<TTodosUI> = ({
         <Tooltip label={isRevers ? "Новые вверху" : "Новые внизу"}>
           <ActionIcon
             size="input-sm"
-            variant={isLightTheme ? "filled" : "light"}
+            variant={"filled"}
             color={isRevers ? "gray" : "yellow"}
             onClick={setRevers}
           >
@@ -63,7 +61,7 @@ const TodosUI: FC<TTodosUI> = ({
 
         <Button.Group>
           <Button
-            variant={isLightTheme ? "filled" : "light"}
+            variant={"filled"}
             color={filterValue === "all" ? "green" : "gray"}
             onClick={() => filtered("all")}
             pl={12}
@@ -73,7 +71,7 @@ const TodosUI: FC<TTodosUI> = ({
             Все
           </Button>
           <Button
-            variant={isLightTheme ? "filled" : "light"}
+            variant={"filled"}
             color={filterValue === "active" ? "green" : "gray"}
             onClick={() => filtered("active")}
             pl={12}
@@ -83,7 +81,7 @@ const TodosUI: FC<TTodosUI> = ({
             Активные
           </Button>
           <Button
-            variant={isLightTheme ? "filled" : "light"}
+            variant={"filled"}
             color={filterValue === "completed" ? "green" : "gray"}
             onClick={() => filtered("completed")}
             pl={12}
@@ -127,7 +125,7 @@ const TodosUI: FC<TTodosUI> = ({
         </span>
         {filterValue === "completed" && (
           <Button
-            variant={isLightTheme ? "filled" : "light"}
+            variant={"filled"}
             color="red"
             onClick={clearCompleted}
             disabled={!length}

@@ -1,6 +1,5 @@
 "use client";
 import { FC, useState } from "react";
-import { useMantineColorScheme } from "@mantine/core";
 import { TodoItemUI } from "../ui";
 import { TTodo } from "@/types";
 
@@ -14,7 +13,6 @@ const TodoItem: FC<TTodoItem> = ({ todo, toggleCompleted, deleteItem }) => {
   const { id, label, completed } = todo;
   const [isChecked, setIsChecked] = useState<boolean>(completed);
   const [isHovered, setIsHovered] = useState<boolean>(false);
-  const { colorScheme } = useMantineColorScheme();
 
   return (
     <TodoItemUI
@@ -27,7 +25,6 @@ const TodoItem: FC<TTodoItem> = ({ todo, toggleCompleted, deleteItem }) => {
       deleteItem={deleteItem}
       isHovered={isHovered}
       setIsHovered={setIsHovered}
-      isLightTheme={colorScheme === "light" ? true : false}
     />
   );
 };
