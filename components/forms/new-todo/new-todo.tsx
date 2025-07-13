@@ -1,14 +1,17 @@
 import { Dispatch, SetStateAction } from "react";
-import { NewTodoUI } from "@/components/ui/forms";
+import { useMantineColorScheme } from "@mantine/core";
 import { useForm } from "@mantine/form";
-import { TTodo } from "@/types";
+import { NewTodoUI } from "@/components/ui/forms";
 import { uuidv4 } from "@/utils";
+import { TTodo } from "@/types";
 
 const NewTodo = ({
   setItems,
 }: {
   setItems: Dispatch<SetStateAction<TTodo[]>>;
 }) => {
+  const { colorScheme } = useMantineColorScheme();
+
   const form = useForm({
     mode: "uncontrolled",
     initialValues: {
@@ -20,11 +23,20 @@ const NewTodo = ({
   });
 
   const submitHandler = (value: string) => {
-    setItems((prev) => [...prev, { id: uuidv4(), label: value }]);
+    setItems((prev) => [
+      ...prev,
+      { id: uuidv4(), label: value, completed: false },
+    ]);
     form.reset();
   };
 
-  return <NewTodoUI form={form} submitHandler={submitHandler} />;
+  return (
+    <NewTodoUI
+      form={form}
+      isLightTheme={colorScheme === "light" ? true : false}
+      submitHandler={submitHandler}
+    />
+  );
 };
 
 export default NewTodo;

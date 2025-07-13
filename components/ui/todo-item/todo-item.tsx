@@ -7,10 +7,11 @@ type TTodoItemUI = {
   id: string;
   label: string;
   isChecked: boolean;
+  isHovered: boolean;
+  isLightTheme: boolean;
   toggleCompleted: (id: string) => void;
   setIsChecked: (v: boolean) => void;
   deleteItem: (id: string) => void;
-  isHovered: boolean;
   setIsHovered: (v: boolean) => void;
 };
 
@@ -23,6 +24,7 @@ const TodoItemUI: FC<TTodoItemUI> = ({
   deleteItem,
   isHovered,
   setIsHovered,
+  isLightTheme,
 }) => {
   const deleteBtnClasses = [
     classes.deleteBtn,
@@ -54,7 +56,7 @@ const TodoItemUI: FC<TTodoItemUI> = ({
           <Checkbox.Indicator
             size="lg"
             color="green"
-            variant="outline"
+            variant={isLightTheme ? "filled" : "outline"}
             checked={isChecked}
           />
           <Text className={classes.label}>{label}</Text>

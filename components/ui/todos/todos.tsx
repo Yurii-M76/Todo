@@ -20,6 +20,7 @@ type TTodosUI = {
   completed: number;
   filterValue: TTodoFiltered;
   isRevers: boolean;
+  isLightTheme: boolean;
   setRevers: () => void;
   filtered: (value: TTodoFiltered) => void;
   setItems: Dispatch<SetStateAction<TTodo[]>>;
@@ -34,12 +35,13 @@ const TodosUI: FC<TTodosUI> = ({
   completed,
   filterValue,
   isRevers,
+  isLightTheme,
   setRevers,
   filtered,
   setItems,
   toggleCompleted,
   clearCompleted,
-  deleteItem
+  deleteItem,
 }) => {
   const length = items.length;
 
@@ -51,7 +53,7 @@ const TodosUI: FC<TTodosUI> = ({
         <Tooltip label={isRevers ? "Новые вверху" : "Новые внизу"}>
           <ActionIcon
             size="input-sm"
-            variant="light"
+            variant={isLightTheme ? "filled" : "light"}
             color={isRevers ? "gray" : "yellow"}
             onClick={setRevers}
           >
@@ -61,29 +63,32 @@ const TodosUI: FC<TTodosUI> = ({
 
         <Button.Group>
           <Button
-            variant="light"
+            variant={isLightTheme ? "filled" : "light"}
             color={filterValue === "all" ? "green" : "gray"}
             onClick={() => filtered("all")}
             pl={12}
             pr={12}
+            m={0}
           >
             Все
           </Button>
           <Button
-            variant="light"
+            variant={isLightTheme ? "filled" : "light"}
             color={filterValue === "active" ? "green" : "gray"}
             onClick={() => filtered("active")}
             pl={12}
             pr={12}
+            m={0}
           >
             Активные
           </Button>
           <Button
-            variant="light"
+            variant={isLightTheme ? "filled" : "light"}
             color={filterValue === "completed" ? "green" : "gray"}
             onClick={() => filtered("completed")}
             pl={12}
             pr={12}
+            m={0}
           >
             Завершенные
           </Button>
@@ -122,7 +127,7 @@ const TodosUI: FC<TTodosUI> = ({
         </span>
         {filterValue === "completed" && (
           <Button
-            variant="light"
+            variant={isLightTheme ? "filled" : "light"}
             color="red"
             onClick={clearCompleted}
             disabled={!length}

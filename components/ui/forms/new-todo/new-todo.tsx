@@ -13,10 +13,11 @@ type TNewTodoUI = {
       newTodo: string;
     }
   >;
+  isLightTheme: boolean;
   submitHandler: (value: string) => void;
 };
 
-const NewTodoUI: FC<TNewTodoUI> = ({ form, submitHandler }) => {
+const NewTodoUI: FC<TNewTodoUI> = ({ form, isLightTheme, submitHandler }) => {
   return (
     <form
       className={classes.formNewTodo}
@@ -24,7 +25,7 @@ const NewTodoUI: FC<TNewTodoUI> = ({ form, submitHandler }) => {
     >
       <Input
         size="lg"
-        variant="filled"
+        variant="default"
         rightSectionPointerEvents="all"
         rightSection={
           form.isDirty() ? (
@@ -39,7 +40,13 @@ const NewTodoUI: FC<TNewTodoUI> = ({ form, submitHandler }) => {
         key={form.key("newTodo")}
         {...form.getInputProps("newTodo")}
       />
-      <Button type="submit" size="lg" p={0} variant="light" color="green">
+      <Button
+        type="submit"
+        size="lg"
+        p={0}
+        variant={isLightTheme ? "filled" : "light"}
+        color="green"
+      >
         <PlusIcon strokeWidth="1" />
       </Button>
     </form>
