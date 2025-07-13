@@ -1,7 +1,7 @@
 import { Dispatch, FC, SetStateAction } from "react";
 import { ActionIcon, Button, Checkbox, Flex, Stack } from "@mantine/core";
 import { NewTodo } from "@/components/forms";
-import { TodoItemUI } from "../todo-item";
+import { TodoItem } from "@/components/todo-item";
 import { ArrowUpDownIcon } from "../icons";
 import { TTodo, TTodoFiltered } from "@/types";
 import classes from "./styles.module.css";
@@ -64,7 +64,7 @@ const TodosUI: FC<TTodosUI> = ({
       <Checkbox.Group>
         <Stack pt="md" gap="xs">
           {items.map((item) => (
-            <TodoItemUI
+            <TodoItem
               key={item.id}
               todo={item}
               toggleCompleted={toggleCompleted}

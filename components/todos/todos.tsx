@@ -20,12 +20,19 @@ const Todos = () => {
       ? reversedItems.filter((item) => !item.completed)
       : reversedItems.filter((item) => item.completed);
 
+  const filterTimeout = (id: string) => {
+    const timeout = setTimeout(() => {
+      clearTimeout(timeout);
+      return setItems((prev) =>
+        prev.map((item) =>
+          item.id === id ? { ...item, completed: !item.completed } : item
+        )
+      );
+    }, 350);
+  };
+
   const toggleCompleted = (id: string) => {
-    setItems((prev) =>
-      prev.map((item) =>
-        item.id === id ? { ...item, completed: !item.completed } : item
-      )
-    );
+    filterTimeout(id);
   };
 
   const toggleReversed = () => {
