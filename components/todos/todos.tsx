@@ -39,16 +39,23 @@ const Todos = () => {
     setIsRevers(!isRevers);
   };
 
+  const clearCompleted = () => {
+    const clearCompleted = reversedItems.filter((item) => !item.completed);
+    setItems(clearCompleted);
+  };
+
   return (
     <TodosUI
       items={filteredItems}
       active={activeCount}
       completed={completedCount}
+      isRevers={isRevers}
       setRevers={toggleReversed}
       filterValue={filterValue}
       filtered={setFilterValue}
       setItems={setItems}
       toggleCompleted={toggleCompleted}
+      clearCompleted={clearCompleted}
     />
   );
 };
