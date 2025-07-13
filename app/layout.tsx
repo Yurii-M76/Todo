@@ -32,7 +32,7 @@ export default function RootLayout({ children }: { children: any }) {
         />
       </head>
       <body className={montserratFont.variable}>
-        <MantineProvider theme={theme} defaultColorScheme="dark">
+        <MantineProvider theme={theme} defaultColorScheme="light">
           <div className={"container"}>{children}</div>
         </MantineProvider>
       </body>
