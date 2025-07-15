@@ -4,6 +4,7 @@ import { MantineProvider, mantineHtmlProps } from "@mantine/core";
 import "@mantine/core/styles.css";
 import "@/styles/global.css";
 import { theme } from "../theme";
+import { ThemeToggler } from "@/components";
 
 const montserratFont = Montserrat({
   subsets: ["latin"],
@@ -29,6 +30,9 @@ export default function RootLayout({ children }: { children: any }) {
       <body className={montserratFont.variable}>
         <MantineProvider theme={theme}>
           <div className={"container"}>{children}</div>
+          <div className="themeToggler">
+            <ThemeToggler />
+          </div>
         </MantineProvider>
       </body>
     </html>
