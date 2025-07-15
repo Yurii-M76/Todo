@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { ActionIcon, Checkbox, Group, Text } from "@mantine/core";
+import { ActionIcon, Checkbox, Group, Text, Tooltip } from "@mantine/core";
 import { TrashIcon } from "../icons";
 import classes from "./styles.module.css";
 
@@ -7,11 +7,9 @@ type TTodoItemUI = {
   id: string;
   label: string;
   isChecked: boolean;
-  isHovered: boolean;
   toggleCompleted: (id: string) => void;
   setIsChecked: (v: boolean) => void;
   deleteItem: (id: string) => void;
-  setIsHovered: (v: boolean) => void;
 };
 
 const TodoItemUI: FC<TTodoItemUI> = ({
@@ -21,22 +19,9 @@ const TodoItemUI: FC<TTodoItemUI> = ({
   toggleCompleted,
   setIsChecked,
   deleteItem,
-  isHovered,
-  setIsHovered,
 }) => {
-  const deleteBtnClasses = [
-    classes.deleteBtn,
-    isHovered ? classes.deleteBtnVisibility : null,
-  ]
-    .filter(Boolean)
-    .join(" ");
-
   return (
-    <div
-      className={classes.item}
-      onMouseMove={() => setIsHovered(true)}
-      onMouseOut={() => setIsHovered(false)}
-    >
+    <div className={classes.item}>
       <Checkbox.Card
         className={classes.root}
         radius="md"
@@ -60,16 +45,19 @@ const TodoItemUI: FC<TTodoItemUI> = ({
           <Text className={classes.label}>{label}</Text>
         </Group>
       </Checkbox.Card>
-      <div className={deleteBtnClasses}>
-        <ActionIcon
-          variant="subtle"
-          color="red"
-          size="input-sm"
-          radius="50%"
-          onClick={() => deleteItem(id)}
-        >
-          <TrashIcon width={20} height={20} />
-        </ActionIcon>
+      <div className={classes.deleteBtn}>
+        <Tooltip label="Удалить">
+          <ActionIcon
+            variant="subtle"
+            color="#dee2e6"
+            size="lg"
+            radius="50%"
+            onClick={() => deleteItem(id)}
+            className={classes.deleteIcon}
+          >
+            <TrashIcon width={18} height={18} strokeWidth="1.6" />
+          </ActionIcon>
+        </Tooltip>
       </div>
     </div>
   );

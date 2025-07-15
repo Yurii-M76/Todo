@@ -39,12 +39,12 @@
   position: absolute;
   top: inherit;
   right: 14px;
-  visibility: hidden;
   display: flex;
-  display: none;
 }
 
-.deleteBtnVisibility {
-  visibility: visible;
-  display: block;
+.deleteIcon {
+  color: light-dark(#dee2e6, #495057);
+  &:hover {
+    color: var(--mantine-color-red-7);
+  }
 }
