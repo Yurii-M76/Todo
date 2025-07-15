@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { TodosUI } from "../ui";
+import { TodoDeleteModal, TodosUI } from "@/components/ui";
 import { todos } from "@/mocks/todos";
 import { TTodo, TTodoFiltered } from "@/types";
 
@@ -8,6 +8,10 @@ const Todos = () => {
   const [items, setItems] = useState<TTodo[]>(todos);
   const [filterValue, setFilterValue] = useState<TTodoFiltered>("all");
   const [isRevers, setIsRevers] = useState<boolean>(true);
+  const [openDeleteModal, setOpenDeleteModal] = useState<boolean>(false);
+  const [todoToDelete, setTodoToDelete] = useState<TTodo | undefined>(
+    undefined
+  );
 
   const reversedItems = isRevers ? [...items].reverse() : items;
   const completedCount: number = items.filter((item) => item.completed).length;
@@ -43,24 +47,41 @@ const Todos = () => {
     setItems(items.filter((item) => !item.completed));
   };
 
-  const deleteItem = (id: string) => {
-    setItems(items.filter((item) => item.id !== id));
+  const setTodoIdToDelete = (id: string) => {
+    const item = items.find((item) => item.id === id);
+    if (item) {
+      setTodoToDelete(item);
+    }
+    setOpenDeleteModal(true);
+  };
+
+  const deleteHandler = () => {
+    setItems(items.filter((item) => item.id !== todoToDelete?.id));
+    setOpenDeleteModal(false);
   };
 
   return (
-    <TodosUI
-      items={filteredItems}
-      active={activeCount}
-      completed={completedCount}
-      isRevers={isRevers}
-      setRevers={toggleReversed}
-      filterValue={filterValue}
-      filtered={setFilterValue}
-      setItems={setItems}
-      toggleCompleted={toggleCompleted}
-      clearCompleted={clearCompleted}
-      deleteItem={deleteItem}
-    />
+    <>
+      <TodosUI
+        items={filteredItems}
+        active={activeCount}
+        completed={completedCount}
+        isRevers={isRevers}
+        setRevers={toggleReversed}
+        filterValue={filterValue}
+        filtered={setFilterValue}
+        setItems={setItems}
+        toggleCompleted={toggleCompleted}
+        clearCompleted={clearCompleted}
+        setTodoId={setTodoIdToDelete}
+      />
+      <TodoDeleteModal
+        opened={openDeleteModal}
+        onClose={() => setOpenDeleteModal(false)}
+        deleteHandler={deleteHandler}
+        todoLabel={todoToDelete?.label}
+      />
+    </>
   );
 };
 
