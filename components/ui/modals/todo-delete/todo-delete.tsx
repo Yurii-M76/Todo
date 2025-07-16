@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Button, Modal, Paper, Text } from "@mantine/core";
+import { Anchor, Button, Modal, Paper, Text } from "@mantine/core";
 import classes from "./styles.module.css";
 
 type TTodoDeleteModal = {
@@ -28,14 +28,10 @@ const TodoDeleteModal: FC<TTodoDeleteModal> = ({
       </Paper>
 
       <div className={classes.buttons}>
-        <Button.Group>
-          <Button variant="filled" color="gray" onClick={onClose} m={0}>
-            Отменить
-          </Button>
-          <Button variant="filled" color="red" onClick={deleteHandler} m={0}>
-            Удалить
-          </Button>
-        </Button.Group>
+        <Anchor onClick={onClose} underline="never">Отменить</Anchor>
+        <Button variant="filled" color="red" onClick={deleteHandler} m={0}>
+          Удалить
+        </Button>
       </div>
     </Modal>
   );
