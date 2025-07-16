@@ -52,7 +52,7 @@ const TodosUI: FC<TTodosUI> = ({
           <ActionIcon
             size="input-sm"
             variant={"filled"}
-            color={isRevers ? "gray" : "yellow"}
+            color={isRevers ? "gray" : "orange"}
             onClick={setRevers}
           >
             <ArrowUpDownIcon width={24} height={24} strokeWidth="2" />
