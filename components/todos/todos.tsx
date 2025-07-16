@@ -1,11 +1,15 @@
 "use client";
 import { useState } from "react";
+import { Pagination } from "@mantine/core";
 import { TodoDeleteModal, TodosUI } from "@/components/ui";
+import { chunksData } from "@/utils";
 import { todos } from "@/mocks/todos";
 import { TTodo, TTodoFiltered } from "@/types";
 
 const Todos = () => {
   const [items, setItems] = useState<TTodo[]>(todos);
+  const [activePage, setPage] = useState(1);
+
   const [filterValue, setFilterValue] = useState<TTodoFiltered>("all");
   const [isRevers, setIsRevers] = useState<boolean>(true);
   const [openDeleteModal, setOpenDeleteModal] = useState<boolean>(false);
@@ -35,6 +39,8 @@ const Todos = () => {
     }, 350);
   };
 
+  const data = chunksData(filteredItems, 10);
+
   const toggleCompleted = (id: string) => {
     filterTimeout(id);
   };
@@ -63,7 +69,7 @@ const Todos = () => {
   return (
     <>
       <TodosUI
-        items={filteredItems}
+        items={data[activePage - 1] || []}
         active={activeCount}
         completed={completedCount}
         isRevers={isRevers}
@@ -80,6 +86,14 @@ const Todos = () => {
         onClose={() => setOpenDeleteModal(false)}
         deleteHandler={deleteHandler}
         todoLabel={todoToDelete?.label}
+      />
+      <Pagination
+        total={data.length || 0}
+        value={activePage}
+        withControls={false}
+        onChange={setPage}
+        color="orange"
+        size="lg"
       />
     </>
   );
