@@ -51,7 +51,7 @@ const TodosUI: FC<TTodosUI> = ({
         <Tooltip label={isRevers ? "Новые вверху" : "Новые внизу"}>
           <ActionIcon
             size="input-sm"
-            variant={"filled"}
+            variant={isRevers ? "light" : "filled"}
             color={isRevers ? "gray" : "orange"}
             onClick={setRevers}
           >
@@ -61,7 +61,7 @@ const TodosUI: FC<TTodosUI> = ({
 
         <Button.Group>
           <Button
-            variant={"filled"}
+            variant={filterValue === "all" ? "filled" : "light"}
             color={filterValue === "all" ? "green" : "gray"}
             onClick={() => filtered("all")}
             pl={12}
@@ -71,7 +71,7 @@ const TodosUI: FC<TTodosUI> = ({
             Все
           </Button>
           <Button
-            variant={"filled"}
+            variant={filterValue === "active" ? "filled" : "light"}
             color={filterValue === "active" ? "green" : "gray"}
             onClick={() => filtered("active")}
             pl={12}
@@ -81,7 +81,7 @@ const TodosUI: FC<TTodosUI> = ({
             Активные
           </Button>
           <Button
-            variant={"filled"}
+            variant={filterValue === "completed" ? "filled" : "light"}
             color={filterValue === "completed" ? "green" : "gray"}
             onClick={() => filtered("completed")}
             pl={12}
