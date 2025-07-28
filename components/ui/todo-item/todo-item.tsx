@@ -33,7 +33,7 @@ const TodoItemUI: FC<TTodoItemUI> = ({
       >
         <Group
           wrap="nowrap"
-          align="center"
+          align="flex-start"
           onClick={() => setIsChecked(!isChecked)}
         >
           <Checkbox.Indicator
@@ -42,20 +42,22 @@ const TodoItemUI: FC<TTodoItemUI> = ({
             variant={"filled"}
             checked={isChecked}
           />
-          <Text className={classes.label}>{label}</Text>
+          <div className={classes.titleGroup}>
+            <Text className={classes.label}>{label}</Text>
+            <Text className={classes.description}>01.01.2025</Text>
+          </div>
         </Group>
       </Checkbox.Card>
       <div className={classes.deleteBtn}>
         <Tooltip label="Удалить">
           <ActionIcon
-            variant="subtle"
+            variant="transparent"
             color="#dee2e6"
             size="lg"
-            radius="50%"
             onClick={() => deleteItem(id)}
             className={classes.deleteIcon}
           >
-            <TrashIcon width={18} height={18} strokeWidth="1.6" />
+            <TrashIcon width={22} height={22} strokeWidth="1.6" />
           </ActionIcon>
         </Tooltip>
       </div>

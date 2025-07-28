@@ -34,9 +34,15 @@
   }
 }
 
+.titleGroup {
+  display: flex;
+  flex-direction: column;
+}
+
 .description {
   margin-top: 8px;
   color: var(--mantine-color-dimmed);
+  font-size: 0.9rem;
 }
 
 .deleteBtn {
