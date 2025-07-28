@@ -1,8 +1,8 @@
 import { FC } from "react";
-import { Button, CloseButton, Input } from "@mantine/core";
+import { Button, Input, Popover } from "@mantine/core";
 import { UseFormReturnType } from "@mantine/form";
+import { DateTimePicker } from "@/components";
 import { PlusIcon } from "../../icons";
-import classes from "./styles.module.css";
 
 type TNewTodoUI = {
   form: UseFormReturnType<
@@ -18,30 +18,34 @@ type TNewTodoUI = {
 
 const NewTodoUI: FC<TNewTodoUI> = ({ form, submitHandler }) => {
   return (
-    <form
-      className={classes.formNewTodo}
-      onSubmit={form.onSubmit((values) => submitHandler(values.newTodo))}
-    >
+    <form onSubmit={form.onSubmit((values) => submitHandler(values.newTodo))}>
       <Input
         size="lg"
         variant="default"
         rightSectionPointerEvents="all"
         rightSection={
           form.isDirty() ? (
-            <CloseButton
-              size="lg"
-              aria-label="Clear input"
-              variant="transparent"
-              onClick={() => form.reset()}
-            />
+            <Popover trapFocus position="bottom" withArrow shadow="md">
+              <Popover.Target>
+                <Button
+                  type="button"
+                  size="md"
+                  p={0}
+                  variant="filled"
+                  color="green"
+                >
+                  <PlusIcon strokeWidth="1" />
+                </Button>
+              </Popover.Target>
+              <Popover.Dropdown>
+                <DateTimePicker />
+              </Popover.Dropdown>
+            </Popover>
           ) : undefined
         }
         key={form.key("newTodo")}
         {...form.getInputProps("newTodo")}
       />
-      <Button type="submit" size="lg" p={0} variant={"filled"} color="green">
-        <PlusIcon strokeWidth="1" />
-      </Button>
     </form>
   );
 };
