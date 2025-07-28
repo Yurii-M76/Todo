@@ -4,7 +4,7 @@ import { createTheme } from "@mantine/core";
 
 export const theme = createTheme({
   fontFamily: "montserrat, sans-serif",
-  primaryColor: "gray",
+  primaryColor: "green",
   headings: {
     fontFamily: "montserrat",
     sizes: {
