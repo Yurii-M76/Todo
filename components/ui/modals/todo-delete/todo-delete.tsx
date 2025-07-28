@@ -24,11 +24,13 @@ const TodoDeleteModal: FC<TTodoDeleteModal> = ({
     >
       <Paper withBorder p={10}>
         <Text>Подтвердите удаление записи:</Text>
-        <Text>{todoLabel && <strong>"{todoLabel}"</strong>}</Text>
+        <Text>{todoLabel && <strong>{todoLabel}</strong>}</Text>
       </Paper>
 
       <div className={classes.buttons}>
-        <Anchor onClick={onClose} underline="never">Отменить</Anchor>
+        <Anchor onClick={onClose} underline="never" c="dimmed">
+          Отменить
+        </Anchor>
         <Button variant="filled" color="red" onClick={deleteHandler} m={0}>
           Удалить
         </Button>
