@@ -11,6 +11,7 @@ const ThemeToggler = () => {
       variant="light"
       size="xl"
       aria-label="Toggle color scheme"
+      color="gray"
     >
       <span className={classes.light} />
       <span className={classes.dark} />
