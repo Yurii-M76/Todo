@@ -43,6 +43,7 @@ const NewTodoUI: FC<TNewTodoUI> = ({ form, submitHandler }) => {
             </Popover>
           ) : undefined
         }
+        placeholder="Новая задача"
         key={form.key("newTodo")}
         {...form.getInputProps("newTodo")}
       />
