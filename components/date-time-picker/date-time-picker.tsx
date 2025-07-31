@@ -8,10 +8,15 @@ import { TTodoCreate } from "@/types";
 
 type TDateTimePicker = {
   value: string;
+  setIsAlreadyLabel: (v: boolean) => void;
   createHandler: (data: TTodoCreate) => void;
 };
 
-const DateTimePicker: FC<TDateTimePicker> = ({ value, createHandler }) => {
+const DateTimePicker: FC<TDateTimePicker> = ({
+  value,
+  createHandler,
+  setIsAlreadyLabel,
+}) => {
   const [dateValue, setDateValue] = useState<string | null>(null);
   const [timeValue, setTimeValue] = useState<string | null>(null);
 
@@ -31,10 +36,12 @@ const DateTimePicker: FC<TDateTimePicker> = ({ value, createHandler }) => {
 
   const onCreate = () => {
     createHandler({ label: value, date: dateValue, time: timeValue });
+    setIsAlreadyLabel(false);
   };
 
   return (
     <DateTimePickerUI
+      dateValue={dateValue}
       dayRenderer={dayRenderer}
       dateChangeHandler={setDateValue}
       timeChangeHandler={setTimeValue}

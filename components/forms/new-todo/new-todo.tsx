@@ -1,5 +1,5 @@
 "use client";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import { useForm } from "@mantine/form";
 import { NewTodoUI } from "@/components/ui/forms";
 import { uuidv4 } from "@/utils";
@@ -10,6 +10,7 @@ const NewTodo = ({
 }: {
   setItems: Dispatch<SetStateAction<TTodo[]>>;
 }) => {
+  const [isAlreadyLabel, setIsAlreadyLabel] = useState(false);
   const form = useForm({
     mode: "controlled",
     initialValues: {
@@ -31,7 +32,14 @@ const NewTodo = ({
     form.reset();
   };
 
-  return <NewTodoUI form={form} createHandler={createHandler} />;
+  return (
+    <NewTodoUI
+      form={form}
+      createHandler={createHandler}
+      isAlreadyLabel={isAlreadyLabel}
+      setIsAlreadyLabel={setIsAlreadyLabel}
+    />
+  );
 };
 
 export default NewTodo;
