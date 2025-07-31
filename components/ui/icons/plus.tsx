@@ -1,6 +1,18 @@
 import { TIcon } from "@/types";
 
-const PlusIcon = ({ width, height, fill, stroke, strokeWidth }: TIcon) => {
+const PlusIcon = ({
+  width,
+  height,
+  fill,
+  stroke,
+  strokeWidth,
+  style,
+}: TIcon) => {
+  const styles = {
+    flexShrink: 0,
+    transition: "transform 0.3s ease"
+  };
+
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -12,7 +24,7 @@ const PlusIcon = ({ width, height, fill, stroke, strokeWidth }: TIcon) => {
       strokeWidth={strokeWidth || "1.2"}
       strokeLinecap="round"
       strokeLinejoin="round"
-      style={{ flexShrink: 0 }}
+      style={Object.assign(styles, style)}
     >
       <path d="M5 12h14" />
       <path d="M12 5v14" />
