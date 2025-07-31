@@ -10,15 +10,12 @@ type TTodoItem = {
 };
 
 const TodoItem: FC<TTodoItem> = ({ todo, toggleCompleted, deleteItem }) => {
-  const { id, label, completed } = todo;
+  const { id, label, date, time, completed } = todo;
   const [isChecked, setIsChecked] = useState<boolean>(completed);
 
   return (
     <TodoItemUI
-      key={id}
-      id={id}
-      label={label}
-      isChecked={isChecked}
+      data={{ id, label, date, time, completed: isChecked }}
       setIsChecked={setIsChecked}
       toggleCompleted={toggleCompleted}
       deleteItem={deleteItem}

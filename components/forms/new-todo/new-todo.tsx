@@ -3,7 +3,7 @@ import { Dispatch, SetStateAction } from "react";
 import { useForm } from "@mantine/form";
 import { NewTodoUI } from "@/components/ui/forms";
 import { uuidv4 } from "@/utils";
-import { TTodo } from "@/types";
+import { TTodo, TTodoCreate } from "@/types";
 
 const NewTodo = ({
   setItems,
@@ -11,24 +11,27 @@ const NewTodo = ({
   setItems: Dispatch<SetStateAction<TTodo[]>>;
 }) => {
   const form = useForm({
-    mode: "uncontrolled",
+    mode: "controlled",
     initialValues: {
       newTodo: "",
     },
-    validate: {
-      newTodo: (value) => (value ? null : "The field cannot be empty"),
-    },
   });
-
-  const submitHandler = (value: string) => {
+  const createHandler = (data: TTodoCreate) => {
+    const { label, date, time } = data;
     setItems((prev) => [
       ...prev,
-      { id: uuidv4(), label: value, completed: false },
+      {
+        id: uuidv4(),
+        label,
+        date,
+        time,
+        completed: false,
+      },
     ]);
     form.reset();
   };
 
-  return <NewTodoUI form={form} submitHandler={submitHandler} />;
+  return <NewTodoUI form={form} createHandler={createHandler} />;
 };
 
 export default NewTodo;
