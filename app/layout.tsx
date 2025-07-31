@@ -1,11 +1,11 @@
+import "@mantine/core/styles.css";
+import "@mantine/dates/styles.css";
 import React from "react";
 import { Montserrat } from "next/font/google";
 import { MantineProvider, mantineHtmlProps } from "@mantine/core";
-import "@mantine/core/styles.css";
-import "@mantine/dates/styles.css";
-import "@/styles/global.css";
-import { theme } from "../theme";
 import { ThemeToggler } from "@/components";
+import { theme } from "../theme";
+import "@/styles/global.css";
 
 const montserratFont = Montserrat({
   subsets: ["latin"],
