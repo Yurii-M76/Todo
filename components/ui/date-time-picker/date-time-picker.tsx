@@ -6,17 +6,17 @@ import { WatchIcon } from "../icons";
 import classes from "./styles.module.css";
 
 type TDateTimePickerUI = {
-  dayRenderer: RenderDay | undefined
+  dayRenderer: RenderDay | undefined;
   dateChangeHandler: (value: string | null) => void;
   timeChangeHandler: (value: string | null) => void;
-  addedHandler: () => void;
+  createNewTodo: () => void;
 };
 
 const DateTimePickerUI: FC<TDateTimePickerUI> = ({
   dayRenderer,
   dateChangeHandler,
   timeChangeHandler,
-  addedHandler,
+  createNewTodo,
 }) => {
   return (
     <div className={classes.dateTimePicker}>
@@ -33,7 +33,7 @@ const DateTimePickerUI: FC<TDateTimePickerUI> = ({
           leftSection={<WatchIcon width={18} height={18} strokeWidth="2" />}
           onChange={(value) => timeChangeHandler(value ? value : null)}
         />
-        <Button size="sm" color="green" onClick={addedHandler}>
+        <Button size="sm" color="green" onClick={createNewTodo}>
           Добавить
         </Button>
       </Group>

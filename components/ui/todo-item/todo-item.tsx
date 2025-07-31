@@ -2,31 +2,29 @@ import { FC } from "react";
 import { ActionIcon, Checkbox, Group, Text, Tooltip } from "@mantine/core";
 import { TrashIcon } from "../icons";
 import classes from "./styles.module.css";
+import { TTodo } from "@/types";
 
 type TTodoItemUI = {
-  id: string;
-  label: string;
-  isChecked: boolean;
+  data: TTodo;
   toggleCompleted: (id: string) => void;
   setIsChecked: (v: boolean) => void;
   deleteItem: (id: string) => void;
 };
 
 const TodoItemUI: FC<TTodoItemUI> = ({
-  id,
-  label,
-  isChecked,
+  data,
   toggleCompleted,
   setIsChecked,
   deleteItem,
 }) => {
+  const { id, label, date, time, completed } = data;
   return (
     <div className={classes.root}>
       <div className={classes.checkbox}>
         <Checkbox
-          checked={isChecked}
+          checked={completed}
           onChange={() => {
-            setIsChecked(!isChecked);
+            setIsChecked(!completed);
             toggleCompleted(id);
           }}
           key={id}
@@ -36,12 +34,15 @@ const TodoItemUI: FC<TTodoItemUI> = ({
       <div
         className={classes.item}
         onClick={() => {
-          setIsChecked(!isChecked);
+          setIsChecked(!completed);
           toggleCompleted(id);
         }}
       >
         <Text>{label}</Text>
-        <Text c="dimmed">01.01.2025</Text>
+        <div className={classes.dateTime}>
+          <Text c="dimmed">{date ? date : "без даты"}</Text>
+          {time && <Text c="dimmed">{time}</Text>}
+        </div>
       </div>
       <div className={classes.deleteButton}>
         <Tooltip label="Удалить">
