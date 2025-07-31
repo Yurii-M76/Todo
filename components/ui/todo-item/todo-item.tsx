@@ -21,34 +21,29 @@ const TodoItemUI: FC<TTodoItemUI> = ({
   deleteItem,
 }) => {
   return (
-    <div className={classes.item}>
-      <Checkbox.Card
-        className={classes.root}
-        radius="md"
-        value={label}
+    <div className={classes.root}>
+      <div className={classes.checkbox}>
+        <Checkbox
+          checked={isChecked}
+          onChange={() => {
+            setIsChecked(!isChecked);
+            toggleCompleted(id);
+          }}
+          key={id}
+          size="lg"
+        />
+      </div>
+      <div
+        className={classes.item}
         onClick={() => {
-          toggleCompleted(id);
           setIsChecked(!isChecked);
+          toggleCompleted(id);
         }}
       >
-        <Group
-          wrap="nowrap"
-          align="flex-start"
-          onClick={() => setIsChecked(!isChecked)}
-        >
-          <Checkbox.Indicator
-            size="lg"
-            color="green"
-            variant={"filled"}
-            checked={isChecked}
-          />
-          <div className={classes.titleGroup}>
-            <Text className={classes.label}>{label}</Text>
-            <Text className={classes.description}>01.01.2025</Text>
-          </div>
-        </Group>
-      </Checkbox.Card>
-      <div className={classes.deleteBtn}>
+        <Text>{label}</Text>
+        <Text c="dimmed">01.01.2025</Text>
+      </div>
+      <div className={classes.deleteButton}>
         <Tooltip label="Удалить">
           <ActionIcon
             variant="transparent"
