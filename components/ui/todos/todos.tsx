@@ -1,12 +1,5 @@
 import { Dispatch, FC, SetStateAction } from "react";
-import {
-  ActionIcon,
-  Button,
-  Checkbox,
-  Flex,
-  Stack,
-  Tooltip,
-} from "@mantine/core";
+import { ActionIcon, Button, Flex, Stack, Tooltip } from "@mantine/core";
 import { NewTodo } from "@/components/forms";
 import { TodoItem } from "@/components/todo-item";
 import { TodoNoDataUI } from "@/components/ui";
@@ -96,18 +89,16 @@ const TodosUI: FC<TTodosUI> = ({
       {!length ? (
         <TodoNoDataUI />
       ) : (
-        <Checkbox.Group>
-          <Stack gap="xs">
-            {items.map((item) => (
-              <TodoItem
-                key={item.id}
-                todo={item}
-                toggleCompleted={toggleCompleted}
-                deleteItem={setTodoId}
-              />
-            ))}
-          </Stack>
-        </Checkbox.Group>
+        <Stack gap="xs">
+          {items.map((item) => (
+            <TodoItem
+              key={item.id}
+              todo={item}
+              toggleCompleted={toggleCompleted}
+              deleteItem={setTodoId}
+            />
+          ))}
+        </Stack>
       )}
 
       <div className={classes.todoFooter}>
