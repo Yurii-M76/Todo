@@ -1,8 +1,8 @@
 import { FC } from "react";
 import { ActionIcon, Checkbox, Group, Text, Tooltip } from "@mantine/core";
 import { TrashIcon } from "../icons";
-import classes from "./styles.module.css";
 import { TTodo } from "@/types";
+import classes from "./styles.module.css";
 
 type TTodoItemUI = {
   data: TTodo;
@@ -44,19 +44,18 @@ const TodoItemUI: FC<TTodoItemUI> = ({
           {time && <Text c="dimmed">{time}</Text>}
         </div>
       </div>
-      <div className={classes.deleteButton}>
-        <Tooltip label="Удалить">
+      <Tooltip label="Удалить">
+        <div className={classes.deleteButton}>
           <ActionIcon
             variant="transparent"
-            color="#dee2e6"
             size="lg"
             onClick={() => deleteItem(id)}
-            className={classes.deleteIcon}
+            style={{ color: "inherit" }}
           >
             <TrashIcon width={22} height={22} strokeWidth="1.6" />
           </ActionIcon>
-        </Tooltip>
-      </div>
+        </div>
+      </Tooltip>
     </div>
   );
 };
