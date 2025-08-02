@@ -49,6 +49,6 @@
 .deleteIcon {
   color: light-dark(#dee2e6, #495057);
   &:hover {
-    color: var(--mantine-color-red-7);
+    color: light-dark(var(--mantine-color-red-7), var(--mantine-color-red-7));
   }
 }
