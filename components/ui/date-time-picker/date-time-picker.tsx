@@ -1,13 +1,12 @@
 import { FC } from "react";
 import { Button, Group } from "@mantine/core";
-import { DatePicker, RenderDay, TimePicker } from "@mantine/dates";
+import { DatePicker, TimePicker } from "@mantine/dates";
 import "dayjs/locale/ru";
 import { WatchIcon } from "../icons";
 import classes from "./styles.module.css";
 
 type TDateTimePickerUI = {
   dateValue: string | null;
-  dayRenderer: RenderDay | undefined;
   dateChangeHandler: (value: string | null) => void;
   timeChangeHandler: (value: string | null) => void;
   createNewTodo: () => void;
@@ -15,7 +14,6 @@ type TDateTimePickerUI = {
 
 const DateTimePickerUI: FC<TDateTimePickerUI> = ({
   dateValue,
-  dayRenderer,
   dateChangeHandler,
   timeChangeHandler,
   createNewTodo,
@@ -26,8 +24,9 @@ const DateTimePickerUI: FC<TDateTimePickerUI> = ({
         locale="ru"
         c={"green"}
         allowDeselect
-        renderDay={dayRenderer}
         onChange={(value) => dateChangeHandler(value ? value : null)}
+        maxLevel="year"
+        defaultValue={dateValue}
       />
       <Group justify="space-between" gap="xs" grow>
         <TimePicker

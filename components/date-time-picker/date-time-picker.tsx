@@ -1,6 +1,4 @@
 "use client";
-import { Indicator } from "@mantine/core";
-import { DatePickerProps } from "@mantine/dates";
 import { FC, useState } from "react";
 import { DateTimePickerUI } from "../ui";
 import dayjs from "dayjs";
@@ -17,22 +15,9 @@ const DateTimePicker: FC<TDateTimePicker> = ({
   createHandler,
   setIsAlreadyLabel,
 }) => {
-  const [dateValue, setDateValue] = useState<string | null>(null);
+  const now = dayjs().format("YYYY-MM-DD");
+  const [dateValue, setDateValue] = useState<string | null>(now);
   const [timeValue, setTimeValue] = useState<string | null>(null);
-
-  const dayRenderer: DatePickerProps["renderDay"] = (date) => {
-    const day = dayjs(date).date();
-    return (
-      <Indicator
-        size={6}
-        color="orange"
-        offset={-2}
-        disabled={day !== +dayjs().format("DD")}
-      >
-        <div>{day}</div>
-      </Indicator>
-    );
-  };
 
   const onCreate = () => {
     createHandler({ label: value, date: dateValue, time: timeValue });
@@ -42,7 +27,6 @@ const DateTimePicker: FC<TDateTimePicker> = ({
   return (
     <DateTimePickerUI
       dateValue={dateValue}
-      dayRenderer={dayRenderer}
       dateChangeHandler={setDateValue}
       timeChangeHandler={setTimeValue}
       createNewTodo={onCreate}
