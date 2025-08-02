@@ -1,5 +1,6 @@
 import { FC } from "react";
-import { ActionIcon, Checkbox, Group, Text, Tooltip } from "@mantine/core";
+import { ActionIcon, Checkbox, Text, Tooltip } from "@mantine/core";
+import { DateTimeUI } from "../date-time";
 import { TrashIcon } from "../icons";
 import { TTodo } from "@/types";
 import classes from "./styles.module.css";
@@ -39,10 +40,7 @@ const TodoItemUI: FC<TTodoItemUI> = ({
         }}
       >
         <Text>{label}</Text>
-        <div className={classes.dateTime}>
-          <Text c="dimmed">{date ? date : "без даты"}</Text>
-          {time && <Text c="dimmed">{time}</Text>}
-        </div>
+        <DateTimeUI date={date} time={time} />
       </div>
       <Tooltip label="Удалить">
         <div className={classes.deleteButton}>
