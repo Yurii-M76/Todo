@@ -1,6 +1,6 @@
 import { TIcon } from "@/types";
 
-const WatchIcon = ({
+const CalendarIcon = ({
   width,
   height,
   fill,
@@ -26,10 +26,18 @@ const WatchIcon = ({
       strokeLinejoin="round"
       style={Object.assign(styles, style)}
     >
-      <path d="M12 6v6l4 2" />
-      <circle cx="12" cy="12" r="10" />
+      <path d="M8 2v4" />
+      <path d="M16 2v4" />
+      <rect width="18" height="18" x="3" y="4" rx="2" />
+      <path d="M3 10h18" />
+      <path d="M8 14h.01" />
+      <path d="M12 14h.01" />
+      <path d="M16 14h.01" />
+      <path d="M8 18h.01" />
+      <path d="M12 18h.01" />
+      <path d="M16 18h.01" />
     </svg>
   );
 };
 
-export default WatchIcon;
+export default CalendarIcon;
