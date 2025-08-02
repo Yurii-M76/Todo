@@ -1,0 +1,14 @@
+.root {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 10px;
+  color: light-dark(var(--mantine-color-gray-6), var(--mantine-color-dark-2));
+}
+
+.date, .time {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
